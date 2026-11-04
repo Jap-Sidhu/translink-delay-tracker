@@ -1,8 +1,25 @@
 # TransLink delay tracker
 
-An always-on pipeline that polls TransLink's real-time bus feeds, stores them in
-Postgres, and reports how late buses run by route and hour. Prediction and a
-public site come later. This first version is the collector and its data.
+A data pipeline built to run continuously. It polls TransLink's real-time bus
+feeds, stores them in Postgres, and reports how late buses run by route and hour.
+This first version is the collector and its reports.
+
+## Status and future plans
+
+**Status:** the collector works and has been tested on real data. So far it has
+run locally for a little over two hours, including a deliberate database outage.
+It does not run continuously yet, so it has no findings about bus delays yet.
+
+Planned next:
+
+1. **Run it continuously.** Move the collector and database to an always-on server
+   so collection no longer depends on a laptop staying awake.
+2. **Build up history.** Collect weeks of data, covering weekdays, weekends and
+   bad-weather days, and watch storage as it grows.
+3. **Publish the findings.** Build a public page showing delays by route and hour,
+   and cancellations, with the disclaimer TransLink's terms require.
+4. **Predict delays.** Train a delay model and evaluate it against simple baselines
+   on data it has not seen, reporting whether it actually beats them.
 
 ## Setup
 
